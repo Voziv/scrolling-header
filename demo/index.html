@@ -23,13 +23,23 @@
 </header>
 
 <section class="page-body">
-    <p>Body content</p>
-    <p>Body content</p>
-    <p>Body content</p>
-    <p>Body content</p>
-    <p>Body content</p>
-    <p>Body content</p>
-    <p>Body content</p>
+    <h2>A simple library to make staggering message rotation in a header.</h2>
+    <h3>The way it should work is:</h3>
+    <ol>
+        <li>Display the first two lines right away.</li>
+        <li>Animate the first line</li>
+        <li>Animate the second line</li>
+        <li>Repeat steps 2 and 3 until we reach the end of our list of text to show</li>
+        <li>Reset both elements at the same time to show the first two lines.</li>
+        <li>Repeat</li>
+    </ol>
+    <h2>Current bugs:</h2>
+    <ul>
+        <li>Weird white line above the animated text in Chrome. Not sure what's causing that.</li>
+        <li>When resetting text to the initial state only the top line animates. Not sure why the 2nd line isn't getting animated.</li>
+    </ul>
+    <h2>Browser Compatibility</h2>
+    <p>TODO: If someone can help me figure out what browsers this will work in that'd be really awesome!</p>
 </section>
 
 <footer class="page-footer">
