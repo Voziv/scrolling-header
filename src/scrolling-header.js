@@ -3,7 +3,6 @@ function ScrollingHeader(items, element)
     var ScrollingHeaderInstance = this;
 
     this.speed          = 2000;
-    this.headerElements = [];
     this.lineCount      = 2;
     this.items          = items;
     this.itemCount      = items.length;
@@ -12,10 +11,10 @@ function ScrollingHeader(items, element)
 
     // Validate input
     if (this.items.length < this.lineCount)
-        throw "You must have at least as many items as you have lines.";
+        throw "You must have at least two items.";
 
     if (this.items.length % this.lineCount)
-        throw "Your item count should be a multiple of the number of lines you're displaying. For example for 2 lines you must provide either 2 items, 4 items, 6 items, etc.";
+        throw "Your items should be a multiple of 2";
 
 
     // Prune child elements
@@ -24,35 +23,45 @@ function ScrollingHeader(items, element)
         this.element.removeChild(this.element.firstChild);
     }
 
-    this.currentLine = 0;
-    this.totalLines  = this.itemCount / this.lineCount;
-
-    for (var i = 0; i < this.lineCount; i++)
+    ScrollingHeaderInstance.currentLine = 0;
+    for (var i = 0; i < ScrollingHeaderInstance.lineCount; i++)
     {
+        ScrollingHeaderInstance.currentLine++;
+
         var newElement       = document.createElement('div');
         newElement.className = 'scrolling-header__item scrolling-header__item';
 
-        var newText = ScrollingHeaderInstance.getTextForLine(ScrollingHeaderInstance.currentLine, i);
-
+        var newText   = ScrollingHeaderInstance.items[ScrollingHeaderInstance.currentLine - 1];
         var line = new ScrollingHeaderItem(newElement, newText);
 
-        this.element.appendChild(newElement);
-        this.lines.push(line);
+        ScrollingHeaderInstance.element.appendChild(newElement);
+        ScrollingHeaderInstance.lines.push(line);
+
+    }
+
+    function resetText()
+    {
+        ScrollingHeaderInstance.currentLine = 0;
+        for (var i = 0; i < ScrollingHeaderInstance.lineCount; i++)
+        {
+            ScrollingHeaderInstance.currentLine++;
+            var newText   = ScrollingHeaderInstance.items[ScrollingHeaderInstance.currentLine - 1];
+            var lineIndex = ScrollingHeaderInstance.currentLine % 2 === 0 ? 1 : 0;
+            ScrollingHeaderInstance.lines[lineIndex].changeText(newText);
+        }
     }
 
     function changeLines()
     {
         ScrollingHeaderInstance.currentLine++;
-        if (ScrollingHeaderInstance.currentLine >= ScrollingHeaderInstance.totalLines)
+        if (ScrollingHeaderInstance.currentLine > ScrollingHeaderInstance.itemCount)
         {
-            ScrollingHeaderInstance.currentLine = 0;
+            resetText();
         }
 
-        for (var i = 0; i < ScrollingHeaderInstance.lineCount; i++)
-        {
-            var newText = ScrollingHeaderInstance.getTextForLine(ScrollingHeaderInstance.currentLine, i);
-            ScrollingHeaderInstance.lines[i].changeText(newText);
-        }
+        var lineIndex = ScrollingHeaderInstance.currentLine % 2 === 0 ? 1 : 0;
+        var newText   = ScrollingHeaderInstance.items[ScrollingHeaderInstance.currentLine - 1];
+        ScrollingHeaderInstance.lines[lineIndex].changeText(newText);
 
         setTimeout(changeLines, ScrollingHeaderInstance.speed);
     }

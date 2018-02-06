@@ -2,10 +2,10 @@
     var scrollingHeaders = document.getElementsByClassName("scrolling-header");
 
     var headerItems = [
-        "We Are", "French",
-        "They are", "English",
-        "We like", "Sushi",
-        "They like", "Crumpets"
+        "We made", "a scrolling library",
+        "We used", "CSS3 animations"
+        // "We like", "Sushi",
+        // "They like", "Crumpets"
     ];
 
     if (scrollingHeaders.length > 0)
