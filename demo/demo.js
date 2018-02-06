@@ -4,8 +4,6 @@
     var headerItems = [
         "We made", "a scrolling library",
         "We used", "CSS3 animations"
-        // "We like", "Sushi",
-        // "They like", "Crumpets"
     ];
 
     if (scrollingHeaders.length > 0)
