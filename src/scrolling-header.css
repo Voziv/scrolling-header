@@ -1,0 +1,53 @@
+.scrolling-header {
+    margin-top    : 50px;
+    margin-bottom : 50px;
+    width         : 100%;
+    overflow      : hidden;
+}
+
+.scrolling-header__item {
+    position      : relative;
+    width         : 100%;
+    height        : 100px;
+    line-height   : 1;
+    font-size     : 95px;
+    overflow      : hidden;
+    margin-top    : 0.6em;
+    margin-bottom : 0.6em;
+}
+
+.scrolling-header__item__text {
+    position    : absolute;
+    width       : 100%;
+    height      : 100px;
+    text-align  : center;
+    line-height : 1;
+}
+
+.scrolling-header__item__text--active {
+    top               : -100%;
+    -webkit-animation : slideIn 0.5s forwards;
+    animation         : slideIn 0.5s forwards;
+}
+
+@keyframes slideIn {
+    100% {
+        top : 0;
+    }
+}
+
+.scrolling-header__item__text--hidden {
+    display : none;
+}
+
+.scrolling-header__item__text--hiding {
+    top               : 0;
+    -webkit-animation : slideOut 0.5s forwards;
+    animation         : slideOut 0.5s forwards;
+}
+
+@keyframes slideOut {
+    100% {
+        top : 100%;
+    }
+}
