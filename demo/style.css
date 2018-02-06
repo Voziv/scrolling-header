@@ -28,7 +28,6 @@ html, body {
 .page-body {
     margin     : auto;
     max-width  : 1200px;
-    min-height : calc(100% - 475px);
 }
 
 .page-navbar {
